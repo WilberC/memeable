@@ -1,15 +1,14 @@
 <h1><%=@meme.title%></h1>
-<%=image_tag(@meme.url_source)%>
+<img src="<%= @meme.url_source %>">
 <div>
 	<h2>Category:</h2>
 	<%=content_tag(:strong,Category.find(@meme.category_id).name) %>
 	<h2>Votes:</h2>
 	<%=content_tag(:strong,@meme.votes_count) %>
 	<%if user_signed_in?%>
-  	<form action="/memes/<%=@meme.id%>" method = "put">
-			<input type="hidden" id="voter_id" name="voter_id" value=<%=current_user.id.to_s%>>
-			<input type="submit" value=<%= @meme.voters.exists?(id: current_user.id) ? "Unvote!" : "Vote!"%>>
-		</form>
+  	<form action= "<%=meme_votes_url(@meme.id)%>" method = "POST">
+		<input type="submit" value=<%= @meme.voters.exists?(id: current_user.id) ? "Unvote!" : "Vote!"%>>
+	</form>
 	<%else%>
   	<strong>Login to vote!</strong>
 	<%end%>

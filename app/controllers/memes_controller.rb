@@ -22,7 +22,7 @@ class MemesController < ApplicationController
     @meme = Meme.new(meme_params)
     @meme.owner = current_user
     if @meme.save
-      redirect_to edit_meme_url(@meme)
+      redirect_to meme_url(@meme)
     else
       render :new
     end

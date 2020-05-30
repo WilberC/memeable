@@ -5,7 +5,7 @@
 		<li>
 			<figure>
 				<a href="/memes/<%=meme.id%>">
-					<%=image_tag(meme.url_source)%>
+					<img src="<%= @meme.url_source %>">
 				</a>
 				<figcaption>
 					Created by: <%=User.find(meme.owner_id).username%>
