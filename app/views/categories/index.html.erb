@@ -1,11 +1,17 @@
 <%@meme_by_category.each do |category, memes|%>
-    <h1><%=category%></h1>
-    <ul>
-        <%memes.each do |meme|%>
-        <li>
-            <%=image_tag(meme[:url_source])%>
-            <%=content_tag(:p,"Created by: #{User.find(meme[:owner_id]).username}") %>
-        </li>
-        <%end%>
-    </ul>
+	<h1><%=category%></h1>
+	<ul>
+		<%memes.each do |meme|%>
+		<li>
+			<figure>
+				<a href="/memes/<%=meme.id%>">
+					<%=image_tag(meme.url_source)%>
+				</a>
+				<figcaption>
+					Created by: <%=User.find(meme.owner_id).username%>
+				</figcaption>
+			</figure>
+		</li>
+		<%end%>
+	</ul>
 <%end%>
