@@ -1,0 +1,34 @@
+<h1><%=@meme.title%></h1>
+<img src="<%= @meme.url_source %>">
+<div>
+	<h2>Category:</h2>
+	<%=content_tag(:strong,Category.find(@meme.category_id).name) %>
+	<h2>Votes:</h2>
+	<%=content_tag(:strong,@meme.votes_count) %>
+	<%if user_signed_in?%>
+  	<form action= "<%=meme_votes_url(@meme.id)%>" method = "POST">
+		<input type="submit" value=<%= @meme.voters.exists?(id: current_user.id) ? "Unvote!" : "Vote!"%>>
+	</form>
+	<%else%>
+  	<strong>Login to vote!</strong>
+	<%end%>
+	<h2>Comments:</h2>
+		<%if user_signed_in?%>
+  	<form action="/memes/<%=@meme.id%>" method = "put">
+  		<input type="text" id="body" name="body" placholder="Write a new comment here...">
+			<input type="hidden" id="commentator_id" name="commentator_id" value=<%=current_user.id.to_s%>>
+			<input type="submit" value="Commment!" %>>
+		</form>
+	<%else%>
+  	<strong>Login to add a comment!</strong>
+	<%end%>
+	<ul>
+	<%@meme.comments.each do |comment|%>
+		<li>
+			<%=content_tag(:strong,User.find(comment.user_id).username) %>
+			<%=content_tag(:p,comment.body) %>
+		</li>
+	<%end%>
+	</ul>
+</div>
+

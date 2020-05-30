@@ -13,7 +13,7 @@
 <nav>
   logo
   <ul>
-    <li>By Category</li>
+    <li><%= link_to "By Category", categories_url %></li>
     <!--    <li><%#= link_to 'By Popularity', controller: 'memes', action: 'by_popularity' %></li>-->
     <li>Search</li>
     <% if user_signed_in? %>
