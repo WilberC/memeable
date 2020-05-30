@@ -1,1 +1,58 @@
-asdasdasd
+<h1>Create a meme!</h1>
+<%= form_for(@meme) do |f| %>
+  <% if @meme.errors %>
+    <ul>
+      <% @meme.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <p>
+    <%= f.label :title %><br/>
+    <%= f.text_field :title, autofocus: true %>
+  </p>
+  <p>
+    <%= f.label :url_source %><br/>
+    <%= f.text_field :url_source %>
+  </p>
+  <p>
+    <%= f.label :meme_type %><br/>
+    <%= f.select :meme_type, [['image'], ['gif']] %>
+  </p>
+  <p>
+    <%= f.label :category_id %><br/>
+    <%= f.select :category_id, options_from_collection_for_select(Category.all, "id", "name") %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%#= form_for(method: "POST") do %>
+<!--  <h1>Create a meme!</h1>-->
+<!--  <div class="field">-->
+<%#= label_tag(:title, "Title") %>
+<!--    <br>-->
+<%#= text_field_tag(:title) %>
+<!--    <br>-->
+<!--  </div>-->
+<!--  <div class="field">-->
+<%#= label_tag(:url_source, "URL Source") %>
+<!--    <br>-->
+<%#= text_field_tag(:url_source) %>
+<!--    <br>-->
+<!--  </div>-->
+<!--  <div class="field">-->
+<%#= label_tag(:meme_type, "Type") %>
+<!--    <br>-->
+<%#= select_tag(:meme_type, options_for_select(@category_options)) %>
+<!--    <br>-->
+<!--  </div>-->
+<!--  <div class="field">-->
+<%#= label_tag(:category, "Category") %>
+<!--    <br>-->
+<%#= select_tag(:category, options_for_select(@meme_types)) %>
+<!--    <br>-->
+<!--  </div>-->
+<%#= submit_tag("Save") %>
+<%# end %>

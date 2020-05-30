@@ -10,14 +10,15 @@ class MemesController < ApplicationController
     render 'index'
   end
 
+  def new
+    @meme = Meme.new
+  end
+
   def create
-    @memes = Meme.new(meme_params)
-    # user_id = current_user.id
-    # p '========================='
-    # p @memes
-    # p '========================='
-    if @memes.save
-      redirect_to meme_path(@memes)
+    @meme = Meme.new(meme_params)
+    @meme.owner = current_user
+    if @meme.save
+      redirect_to edit_meme_url(@meme)
     else
       render :new
     end
@@ -26,6 +27,6 @@ class MemesController < ApplicationController
   private
 
   def meme_params
-    params.permit(:title, :meme_type, :url_source, :category)
+    params.require(:meme).permit(:title, :meme_type, :url_source, :category_id)
   end
 end
