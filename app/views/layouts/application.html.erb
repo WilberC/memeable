@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Memeable</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Memeable</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<body>
+<nav>
+  logo
+  <ul>
+    <li>By Category</li>
+<!--    <li><%#= link_to 'By Popularity', controller: 'memes', action: 'by_popularity' %></li>-->
+    <li>Search</li>
+  </ul>
+  <ul>
+    <% if user_signed_in? %>
+      <li>asd</li>
+      <li>asd</li>
+<!--      <li><%#= link_to "Log out", destroy_user_session, :method => 'delete' %></li>-->
+    <% else %>
+      <li><%= link_to "login", new_user_session_url %></li>
+    <% end %>
+    <li></li>
+  </ul>
+</nav>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
-  <%= yield %>
-  </body>
+<%= yield %>
+<footer>
+  Made by Sebas and Wilber - Codeable #2
+</footer>
+</body>
 </html>

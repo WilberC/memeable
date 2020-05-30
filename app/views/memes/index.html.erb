@@ -1,0 +1,13 @@
+<% @memes.each do |group_by, group_items| %>
+  <section class="meme-group-day">
+    <h1>Votes: <%= group_by %></h1>
+    <% group_items.each do |item| %>
+      <figure>
+        <a href="/memes/<%= item.id.to_s %>">
+          <%= image_tag(item.url_source.to_s) %>
+        </a>
+        <figcaption>Created by: <%= item.owner.username.to_s %></figcaption>
+      </figure>
+    <% end %>
+  </section>
+<% end %>
