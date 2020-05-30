@@ -1,2 +1,0 @@
-class MemeController < ApplicationController
-end
