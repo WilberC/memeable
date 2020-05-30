@@ -14,19 +14,20 @@
   logo
   <ul>
     <li>By Category</li>
-<!--    <li><%#= link_to 'By Popularity', controller: 'memes', action: 'by_popularity' %></li>-->
+    <!--    <li><%#= link_to 'By Popularity', controller: 'memes', action: 'by_popularity' %></li>-->
     <li>Search</li>
   </ul>
-  <ul>
-    <% if user_signed_in? %>
-      <li>asd</li>
-      <li>asd</li>
-<!--      <li><%#= link_to "Log out", destroy_user_session, :method => 'delete' %></li>-->
-    <% else %>
+  <% if user_signed_in? %>
+    Welcome, <%= current_user.username %>
+    <ul>
+      <li><%= link_to "My account", current_user %></li>
+      <li><%= link_to "Log out", destroy_user_session_path, :method => 'delete' %></li>
+    </ul>
+  <% else %>
+    <ul>
       <li><%= link_to "login", new_user_session_url %></li>
-    <% end %>
-    <li></li>
-  </ul>
+    </ul>
+  <% end %>
 </nav>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
