@@ -16,6 +16,9 @@
     <li>By Category</li>
     <!--    <li><%#= link_to 'By Popularity', controller: 'memes', action: 'by_popularity' %></li>-->
     <li>Search</li>
+    <% if user_signed_in? %>
+    <li><%= link_to "Create Meme", memes_new_url %></li>
+    <% end %>
   </ul>
   <% if user_signed_in? %>
     Welcome, <%= current_user.username %>
