@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'votes/create'
   get 'memes/index' #TODO: borrar?
   devise_for :users
   resources :users, only: :show
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
   # resources :memes, only: [:index, :show, :new, :create, :edit, :update]
   resources :memes, only: [:new, :show, :create,:update] do
     resources :votes, only: [:create]
+    resources :comments, only: [:create]
   end
 end
 # rails g devise:views

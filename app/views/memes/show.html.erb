@@ -15,34 +15,11 @@
   <% end %>
   <h2>Comments:</h2>
   <% if user_signed_in? %>
-    <form action="/memes/<%= @meme.id %>">
-      <input type="text" id="body" name="body" placholder="Write a new comment here...">
-      <input type="hidden" id="commentator_id" name="commentator_id" value=<%= current_user.id.to_s %>>
-      <input type="submit" value="Commment!">
+ 	<form action="<%= meme_comments_url(@meme.id) %>" method="POST">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+	  <input type="text" id="body" name="body" placholder="Write a new comment here...">
+      <input type="submit" value="Comment!">
     </form>
-<!--    <script>
-        Rails.ajax({
-            type: 'PATCH',
-            dataType: 'json',
-            accept: 'json',
-            url: "/memes/<%= @meme.id %>",
-            data: {
-                image: cropperImage.src,
-                crop_x: left,
-                crop_y: top,
-                crop_w: width,
-                crop_h: height
-            },
-            beforeSend: (xhr, options) => {
-                xhr.setRequestHeader('Content-Type', 'application/json')
-                return true
-            },
-            success: (response) => {
-            },
-            failure: (response) => {
-            }
-        });
-    </script>-->
   <% else %>
     <strong>Login to add a comment!</strong>
   <% end %>
