@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 2020_05_29_162313) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "body"
+    t.text "body", null: false
     t.bigint "user_id", null: false
     t.bigint "meme_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -32,11 +32,11 @@ ActiveRecord::Schema.define(version: 2020_05_29_162313) do
   end
 
   create_table "memes", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.string "meme_type"
-    t.string "url_source"
-    t.integer "votes_count", default: 0
-    t.integer "comments_count", default: 0
+    t.string "url_source", null: false
+    t.integer "votes_count", default: 0, null: false
+    t.integer "comments_count", default: 0, null: false
     t.bigint "category_id", null: false
     t.bigint "owner_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_05_29_162313) do
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.integer "memes_count", default: 0
+    t.integer "memes_count", default: 0, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
